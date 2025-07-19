@@ -13,6 +13,8 @@ export default function App() {
     const [inGame, setInGame] = useState(false);
     const [showJoinInput, setShowJoinInput] = useState(false);
     const [joinCode, setJoinCode] = useState('');
+    const [showNameModal, setShowNameModal] = useState(false);
+    const [editName, setEditName] = useState('');
 
     useEffect(() => {
         const storedName = localStorage.getItem('wordle1v1_username');
@@ -47,8 +49,52 @@ export default function App() {
         }
     };
 
+    // Handle username change from top right button
+    const openNameModal = () => {
+        setEditName(username);
+        setShowNameModal(true);
+    };
+    const closeNameModal = () => setShowNameModal(false);
+    const handleEditNameSubmit = (e) => {
+        e.preventDefault();
+        if (!editName) return;
+        setUsername(editName);
+        localStorage.setItem('wordle1v1_username', editName);
+        setShowNameModal(false);
+    };
+
     return (
         <main className="container">
+            {username && (
+                <button
+                    className="username-btn"
+                    onClick={openNameModal}
+                    aria-label="Change username"
+                >
+                    {username}
+                </button>
+            )}
+            {showNameModal && (
+                <div className="modal fade-in" style={{ zIndex: 1000, position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <form style={{ minWidth: 260 }} onSubmit={handleEditNameSubmit}>
+                        <h2>Change your name</h2>
+                        <input
+                            type="text"
+                            value={editName}
+                            onChange={e => setEditName(e.target.value)}
+                            maxLength={16}
+                            placeholder="Your name"
+                            required
+                            autoFocus
+                            style={{ fontSize: '1.3em', padding: '1em' }}
+                        />
+                        <div style={{ display: 'flex', gap: '1em', justifyContent: 'center', marginTop: 12 }}>
+                            <button type="submit" disabled={!editName}>Save</button>
+                            <button type="button" onClick={closeNameModal}>Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            )}
             {!username ? (
                 <form className="modal fade-in" onSubmit={handleUsernameSubmit}>
                     <h2>Enter your name</h2>
