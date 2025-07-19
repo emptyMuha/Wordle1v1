@@ -5,9 +5,10 @@
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    min-width: 400px;
+    min-width: 320px;
     max-width: 98vw;
     padding: 2.5em 0.5em;
+    background: #181a1b;
 }
 
 .row {
@@ -26,7 +27,7 @@
     border: 2.5px solid #a8326e;
     border-radius: 10px;
     background: transparent;
-    color: #ffd1ec;
+    color: #f3d1ff;
     text-transform: uppercase;
     transition: background 0.2s, color 0.2s, border 0.2s, transform 0.12s;
     animation: popin 0.18s cubic-bezier(.68, -0.55, .27, 1.55);
@@ -47,20 +48,20 @@
 }
 
 .cell.correct {
-    background: #ff69b4;
+    background: #c850c0;
     color: #fff;
-    border-color: #ff69b4;
+    border-color: #c850c0;
 }
 
 .cell.present {
-    background: #ffb6d5;
-    color: #2a182a;
-    border-color: #ffb6d5;
+    background: #e09cff;
+    color: #232228;
+    border-color: #e09cff;
 }
 
 .cell.absent {
-    background: #3a3a3c;
-    color: #ffd1ec;
+    background: #232228;
+    color: #f3d1ff;
     border-color: #222;
 }
 
