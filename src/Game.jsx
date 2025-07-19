@@ -26,7 +26,7 @@ export default function Game() {
 
     // Connect to Socket.IO and handle matchmaking
     useEffect(() => {
-        const socket = io('http://localhost:3001');
+        const socket = io('https://wordle1v1-production.up.railway.app');
         socketRef.current = socket;
         socket.on('match_found', (data) => {
             setRoom(data.room);
