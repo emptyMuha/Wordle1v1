@@ -23,17 +23,21 @@ html {
     letter-spacing: 1px;
     box-shadow: 0 2px 8px #0003;
     padding: 0 0.5em;
+    overflow: hidden;
 }
 
 .room-left {
     flex: 0 0 auto;
-    min-width: 90px;
+    min-width: 60px;
+    max-width: 30vw;
     text-align: left;
-    margin-left: 1.1em;
+    margin-left: 0.5em;
     color: #27ae60;
     font-size: 1em;
     font-weight: 600;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .players-center {
@@ -41,36 +45,54 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5em;
-    font-size: 1.1em;
+    gap: 0.3em;
+    font-size: 1.05em;
     color: #27ae60;
+    min-width: 0;
+    max-width: 40vw;
+    overflow: hidden;
 }
 
 .player-name-center {
-    min-width: 70px;
+    min-width: 0;
+    max-width: 7em;
     text-align: center;
     color: #27ae60;
     font-weight: 600;
-    font-size: 1.1em;
+    font-size: 1.05em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .vs-center {
-    margin: 0 0.3em;
+    margin: 0 0.2em;
     color: #b0b0b0;
     font-size: 1em;
     font-weight: 500;
+    flex-shrink: 0;
 }
 
 .username-right {
     flex: 0 0 auto;
-    min-width: 80px;
+    min-width: 60px;
+    max-width: 30vw;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-right: 1.1em;
+    margin-right: 0.5em;
+    overflow: hidden;
+}
+
+.username-btn {
+    position: static !important;
+    max-width: 100%;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1em;
+    padding: 0.5em 1em;
 }
 
 .container {
@@ -325,28 +347,31 @@ button:focus {
     .top-bar {
         height: 44px;
         font-size: 0.98em;
-        padding: 0 0.2em;
+        padding: 0 0.1em;
     }
 
     .room-left {
-        min-width: 60px;
-        margin-left: 0.3em;
-        font-size: 0.95em;
+        min-width: 40px;
+        max-width: 28vw;
+        margin-left: 0.1em;
+        font-size: 0.93em;
     }
 
     .players-center {
-        font-size: 0.98em;
-        gap: 0.2em;
+        font-size: 0.93em;
+        gap: 0.13em;
+        max-width: 38vw;
     }
 
     .player-name-center {
-        min-width: 45px;
-        font-size: 0.98em;
+        max-width: 4.5em;
+        font-size: 0.93em;
     }
 
     .username-right {
-        min-width: 60px;
-        margin-right: 0.3em;
+        min-width: 40px;
+        max-width: 28vw;
+        margin-right: 0.1em;
     }
 
     .container {
