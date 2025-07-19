@@ -30,7 +30,7 @@ html {
 
 .option-square {
     background: #232228;
-    color: #f3d1ff;
+    color: #b3e5fc;
     border-radius: 16px;
     box-shadow: 0 2px 16px #0008;
     padding: 2.2em 2em;
@@ -46,8 +46,8 @@ html {
 
 .option-square:focus,
 .option-square:hover {
-    background: #c850c0;
-    color: #fff;
+    background: #4fc3f7;
+    color: #181a1b;
     transform: scale(1.03);
 }
 
@@ -62,9 +62,9 @@ html {
 .join-form input[type="text"] {
     padding: 0.7em;
     border-radius: 6px;
-    border: 1px solid #a8326e;
+    border: 1px solid #2196f3;
     background: #181a1b;
-    color: #f3d1ff;
+    color: #b3e5fc;
     font-size: 1.1em;
     width: 120px;
     text-align: center;
@@ -77,19 +77,19 @@ html {
 }
 
 h1 {
-    color: #c850c0;
+    color: #4fc3f7;
     font-size: 3rem;
     margin-bottom: 0.5em;
 }
 
 p {
-    color: #e09cff;
+    color: #b3e5fc;
     margin-bottom: 2em;
 }
 
 button {
     background: #232228;
-    color: #f3d1ff;
+    color: #b3e5fc;
     border: none;
     padding: 1.1em 2.2em;
     font-size: 1.3rem;
@@ -102,14 +102,14 @@ button {
 
 button:hover,
 button:focus {
-    background: #c850c0;
-    color: #fff;
+    background: #4fc3f7;
+    color: #181a1b;
     transform: scale(1.04);
 }
 
 .modal {
     background: #232228;
-    color: #f3d1ff;
+    color: #b3e5fc;
     padding: 2em;
     border-radius: 12px;
     box-shadow: 0 2px 16px #0008;
@@ -136,9 +136,9 @@ button:focus {
 .modal input[type="text"] {
     padding: 0.7em;
     border-radius: 6px;
-    border: 1px solid #a8326e;
+    border: 1px solid #2196f3;
     background: #181a1b;
-    color: #f3d1ff;
+    color: #b3e5fc;
     font-size: 1.1em;
     margin-bottom: 0.5em;
     width: 180px;
@@ -154,7 +154,7 @@ button:focus {
 
 .room-info {
     margin-bottom: 0.5em;
-    color: #c850c0;
+    color: #4fc3f7;
 }
 
 .user-bar,
@@ -162,7 +162,7 @@ button:focus {
     width: 100vw;
     max-width: 100vw;
     background: #232228;
-    color: #c850c0;
+    color: #4fc3f7;
     text-align: center;
     padding: 0.7em 0;
     font-size: 1.2em;
@@ -179,7 +179,7 @@ button:focus {
 }
 
 .status {
-    color: #e09cff;
+    color: #4fc3f7;
     font-size: 1.5rem;
     margin-bottom: 2em;
     font-weight: 600;
@@ -187,7 +187,7 @@ button:focus {
 }
 
 .error {
-    color: #ff4fa3;
+    color: #2196f3;
     font-size: 1.1em;
     margin-bottom: 1em;
     font-weight: 600;
