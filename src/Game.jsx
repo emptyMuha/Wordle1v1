@@ -9,37 +9,40 @@ import './Game.css';
 const emptyGuesses = Array(6).fill('').map(() => Array(5).fill(''));
 const emptyStatuses = Array(6).fill('').map(() => Array(5).fill(''));
 
-export default function Game() {
+export default function Game({ username, room }) {
     const [guesses, setGuesses] = useState(emptyGuesses);
     const [statuses, setStatuses] = useState(emptyStatuses);
     const [keyStatuses, setKeyStatuses] = useState({});
     const [currentGuess, setCurrentGuess] = useState('');
     const [currentRow, setCurrentRow] = useState(0);
     const [answer, setAnswer] = useState('');
-    const [status, setStatus] = useState('Looking for an opponent...');
+    const [status, setStatus] = useState('Waiting for opponent...');
     const [gameOver, setGameOver] = useState(false);
     const [win, setWin] = useState(false);
     const [error, setError] = useState('');
-    const [room, setRoom] = useState('');
     const [matched, setMatched] = useState(false);
+    const [players, setPlayers] = useState([username, '...']);
     const socketRef = useRef(null);
 
-    // Connect to Socket.IO and handle matchmaking
     useEffect(() => {
         const socket = io('https://wordle1v1-production.up.railway.app');
         socketRef.current = socket;
+        socket.emit('join_room', { room, name: username });
         socket.on('match_found', (data) => {
-            setRoom(data.room);
             setAnswer(data.word);
             setMatched(true);
+            setPlayers(data.players);
             setStatus('Match found! Game starting...');
+        });
+        socket.on('room_full', () => {
+            setStatus('Room is full. Please join another room.');
         });
         socket.on('opponent_game_over', (result) => {
             setGameOver(true);
             setStatus('You lost! Opponent finished first.');
         });
         return () => socket.disconnect();
-    }, []);
+    }, [room, username]);
 
     const handleKey = useCallback((key) => {
         if (!matched || gameOver) return;
@@ -52,9 +55,7 @@ export default function Game() {
                     setError('Not a valid word');
                     return;
                 }
-                console.log('Submitting guess:', currentGuess, 'Answer:', answer);
                 const result = checkGuess(currentGuess, answer);
-
                 setGuesses(prevGuesses =>
                     prevGuesses.map((row, i) =>
                         i === currentRow ? currentGuess.split('') : row
@@ -75,7 +76,6 @@ export default function Game() {
                     }
                     return newKeyStatuses;
                 });
-
                 if (currentGuess === answer) {
                     setStatus('You win!');
                     setGameOver(true);
@@ -99,7 +99,6 @@ export default function Game() {
         }
     }, [matched, gameOver, currentGuess, answer, room]);
 
-    // Physical keyboard support
     useEffect(() => {
         const onKeyDown = (e) => {
             if (e.ctrlKey || e.metaKey || e.altKey) return;
@@ -111,13 +110,17 @@ export default function Game() {
         return () => window.removeEventListener('keydown', onKeyDown);
     }, [handleKey]);
 
-    // Show current guess in the grid
     const displayGuesses = guesses.map((row, i) =>
         i === currentRow ? currentGuess.padEnd(5).split('') : row
     );
 
     return (
         <div className="game-container">
+            <div className="players-bar">
+                <span>{players[0]}</span>
+                <span>vs</span>
+                <span>{players[1]}</span>
+            </div>
             <div className="status">{status}</div>
             {error && <div className="error">{error}</div>}
             <WordleGrid guesses={displayGuesses} statuses={statuses} />

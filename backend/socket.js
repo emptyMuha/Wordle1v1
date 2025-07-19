@@ -12,7 +12,7 @@ const io = new Server(server, {
     }
 });
 
-let waitingPlayer = null;
+// rooms: { [roomCode]: { word, players: [{id, name}], started: bool } }
 const rooms = {};
 
 function pickRandomWord(wordList = VALID_WORDS) {
@@ -22,17 +22,27 @@ function pickRandomWord(wordList = VALID_WORDS) {
 io.on('connection', (socket) => {
     console.log('A user connected:', socket.id);
 
-    if (waitingPlayer) {
-        const room = `room-${waitingPlayer.id}-${socket.id}`;
+    socket.on('join_room', ({ room, name }) => {
+        if (!rooms[room]) {
+            // Create room
+            rooms[room] = { word: pickRandomWord(), players: [], started: false };
+        }
+        if (rooms[room].players.length >= 2) {
+            socket.emit('room_full');
+            return;
+        }
+        rooms[room].players.push({ id: socket.id, name });
         socket.join(room);
-        waitingPlayer.join(room);
-        const word = pickRandomWord();
-        rooms[room] = { word, players: [waitingPlayer.id, socket.id] };
-        io.to(room).emit('match_found', { room, word });
-        waitingPlayer = null;
-    } else {
-        waitingPlayer = socket;
-    }
+        // If two players, start game
+        if (rooms[room].players.length === 2) {
+            rooms[room].started = true;
+            io.to(room).emit('match_found', {
+                room,
+                word: rooms[room].word,
+                players: rooms[room].players.map(p => p.name)
+            });
+        }
+    });
 
     socket.on('game_event', ({ room, data }) => {
         socket.to(room).emit('game_event', data);
@@ -43,9 +53,10 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
-        if (waitingPlayer === socket) waitingPlayer = null;
+        // Remove player from any room
         for (const [room, info] of Object.entries(rooms)) {
-            if (info.players.includes(socket.id)) {
+            info.players = info.players.filter(p => p.id !== socket.id);
+            if (info.players.length === 0) {
                 delete rooms[room];
             }
         }
