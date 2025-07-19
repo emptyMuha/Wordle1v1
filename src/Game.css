@@ -1,0 +1,38 @@
+.game-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #181a1b;
+}
+
+.status {
+    color: #27ae60;
+    font-size: 1.5rem;
+    margin-bottom: 2em;
+}
+
+.wordle-grid {
+    background: #222;
+    color: #e0e0e0;
+    border-radius: 12px;
+    padding: 2em;
+    margin-bottom: 2em;
+    min-width: 320px;
+    min-height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.keyboard {
+    background: #222;
+    color: #27ae60;
+    border-radius: 8px;
+    padding: 1em;
+    min-width: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
