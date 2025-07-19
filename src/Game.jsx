@@ -21,8 +21,12 @@ export default function Game({ username, room, setPlayers }) {
     const [win, setWin] = useState(false);
     const [error, setError] = useState('');
     const [matched, setMatched] = useState(false);
-    const [players, setPlayers] = useState([username, '...']);
+    const [localPlayers, setLocalPlayers] = useState([username, '...']);
     const socketRef = useRef(null);
+
+    // Use setPlayers from props if provided, otherwise use local state
+    const updatePlayers = setPlayers || setLocalPlayers;
+    const players = setPlayers ? undefined : localPlayers;
 
     useEffect(() => {
         const socket = io('https://wordle1v1-production.up.railway.app');
@@ -31,7 +35,7 @@ export default function Game({ username, room, setPlayers }) {
         socket.on('match_found', (data) => {
             setAnswer(data.word);
             setMatched(true);
-            setPlayers && setPlayers(data.players);
+            updatePlayers(data.players);
             setStatus('Match found! Game starting...');
         });
         socket.on('room_full', () => {
