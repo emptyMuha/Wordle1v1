@@ -12,7 +12,7 @@ html {
     background: #222;
     color: #27ae60;
     text-align: center;
-    padding: 0.7em 0;
+    padding: 0;
     font-size: 1.2em;
     font-weight: bold;
     letter-spacing: 1px;
@@ -24,6 +24,8 @@ html {
     top: 0;
     left: 0;
     z-index: 99;
+    height: 44px;
+    line-height: 44px;
 }
 
 .bar-sep {
@@ -254,19 +256,22 @@ button:focus {
 
 .username-btn {
     position: fixed;
-    top: 4px;
-    right: 6px;
-    z-index: 100;
+    top: 0;
+    right: 0;
+    height: 44px;
+    display: flex;
+    align-items: center;
     background: #222;
     color: #27ae60;
     border: 2px solid #27ae60;
     border-radius: 999px;
-    padding: 0.35em 0.8em;
+    padding: 0 1em;
     font-size: 0.95em;
     font-weight: 600;
     cursor: pointer;
     box-shadow: 0 2px 8px #0003;
     transition: background 0.2s, color 0.2s, border 0.2s, transform 0.08s;
+    z-index: 100;
 }
 
 .username-btn:hover,
@@ -306,7 +311,8 @@ button:focus {
 
     .user-bar {
         font-size: 1em;
-        padding: 0.3em 0;
+        height: 38px;
+        line-height: 38px;
     }
 
     .bar-sep {
@@ -329,7 +335,7 @@ button:focus {
     }
 
     .container {
-        padding-top: 44px;
+        padding-top: 38px;
     }
 
     .keyboard {
@@ -357,10 +363,11 @@ button:focus {
     }
 
     .username-btn {
-        top: 2px;
-        right: 3px;
-        padding: 0.28em 0.6em;
+        top: 0;
+        right: 0;
+        height: 38px;
         font-size: 0.92em;
+        padding: 0 0.7em;
     }
 }
 
