@@ -6,38 +6,34 @@ html {
     box-sizing: border-box;
 }
 
-.top-bar {
+.user-bar {
+    width: 100vw;
+    max-width: 100vw;
+    background: #222;
+    color: #27ae60;
+    text-align: center;
+    padding: 0.7em 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 54px;
-    background: #222;
-    color: #27ae60;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     z-index: 99;
-    font-size: 1.1em;
-    font-weight: 600;
-    letter-spacing: 1px;
-    box-shadow: 0 2px 8px #0003;
-    padding: 0 0.5em;
-    overflow: hidden;
 }
 
 .room-left {
     flex: 0 0 auto;
-    min-width: 60px;
-    max-width: 30vw;
-    text-align: left;
-    margin-left: 0.5em;
+    margin-left: 1.1em;
     color: #27ae60;
     font-size: 1em;
     font-weight: 600;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .players-center {
@@ -46,53 +42,26 @@ html {
     align-items: center;
     justify-content: center;
     gap: 0.3em;
-    font-size: 1.05em;
+    font-size: 1.1em;
     color: #27ae60;
-    min-width: 0;
-    max-width: 40vw;
-    overflow: hidden;
 }
 
 .player-name-center {
-    min-width: 0;
-    max-width: 7em;
+    min-width: 70px;
     text-align: center;
     color: #27ae60;
     font-weight: 600;
-    font-size: 1.05em;
+    font-size: 1.1em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .vs-center {
-    margin: 0 0.2em;
+    margin: 0 0.3em;
     color: #b0b0b0;
     font-size: 1em;
     font-weight: 500;
-    flex-shrink: 0;
-}
-
-.username-right {
-    flex: 0 0 auto;
-    min-width: 60px;
-    max-width: 30vw;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-right: 0.5em;
-    overflow: hidden;
-}
-
-.username-btn {
-    position: static !important;
-    max-width: 100%;
-    min-width: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 1em;
-    padding: 0.5em 1em;
 }
 
 .container {
@@ -293,6 +262,10 @@ button:focus {
     cursor: pointer;
     box-shadow: 0 2px 8px #0003;
     transition: background 0.2s, color 0.2s, border 0.2s, transform 0.08s;
+    max-width: 100vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .username-btn:hover,
@@ -330,48 +303,24 @@ button:focus {
         max-width: 98vw;
     }
 
-    .user-bar,
-    .players-bar {
+    .user-bar {
         font-size: 1em;
-        gap: 0.5em;
         padding: 0.3em 0;
     }
 
-    .username-btn {
-        top: 8px;
-        right: 8px;
-        padding: 0.4em 0.8em;
-        font-size: 1em;
-    }
-
-    .top-bar {
-        height: 44px;
-        font-size: 0.98em;
-        padding: 0 0.1em;
-    }
-
     .room-left {
-        min-width: 40px;
-        max-width: 28vw;
-        margin-left: 0.1em;
-        font-size: 0.93em;
+        margin-left: 0.3em;
+        font-size: 0.95em;
     }
 
     .players-center {
-        font-size: 0.93em;
-        gap: 0.13em;
-        max-width: 38vw;
+        font-size: 0.98em;
+        gap: 0.2em;
     }
 
     .player-name-center {
-        max-width: 4.5em;
-        font-size: 0.93em;
-    }
-
-    .username-right {
-        min-width: 40px;
-        max-width: 28vw;
-        margin-right: 0.1em;
+        min-width: 45px;
+        font-size: 0.98em;
     }
 
     .container {
