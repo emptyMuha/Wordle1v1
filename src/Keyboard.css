@@ -1,17 +1,18 @@
 .keyboard {
     display: flex;
     flex-direction: column;
-    gap: 0.5em;
+    gap: 0.7em;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    max-width: 500px;
+    width: 100vw;
+    max-width: 600px;
     margin: 0 auto;
+    padding-bottom: 1em;
 }
 
 .row {
     display: flex;
-    gap: 0.2em;
+    gap: 0.3em;
     justify-content: center;
     width: 100%;
 }
@@ -20,26 +21,48 @@
     background: #222;
     color: #e0e0e0;
     border: none;
-    border-radius: 8px;
-    padding: 1em 1.1em;
-    font-size: 1.2em;
+    border-radius: 10px;
+    padding: 1.2em 1.3em;
+    font-size: 1.5em;
     cursor: pointer;
     text-transform: uppercase;
-    transition: background 0.2s, color 0.2s, transform 0.08s;
-    margin: 0.1em;
+    transition: background 0.15s, color 0.15s, transform 0.08s;
+    margin: 0.15em;
     outline: none;
     box-shadow: 0 2px 8px #0002;
     will-change: transform;
-    min-width: 2.1em;
-    min-height: 2.1em;
-    flex: 1 0 2.1em;
-    max-width: 3em;
+    min-width: 2.5em;
+    min-height: 2.5em;
+    flex: 1 0 2.5em;
+    max-width: 3.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
 .key:active {
-    transform: scale(1.12);
+    transform: scale(1.13);
     background: #27ae60;
     color: #fff;
+}
+
+.key.key-pressed {
+    animation: keypop 0.08s cubic-bezier(.68, -0.55, .27, 1.55);
+}
+
+@keyframes keypop {
+    0% {
+        transform: scale(1);
+    }
+
+    60% {
+        transform: scale(1.18);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .key.correct {
@@ -59,23 +82,23 @@
 
 @media (max-width: 600px) {
     .keyboard {
-        min-width: 98vw !important;
+        min-width: 100vw !important;
         max-width: 100vw;
-        gap: 0.3em;
-        padding: 0.2em 0.1em;
+        gap: 0.5em;
+        padding: 0.2em 0.1em 1.5em 0.1em;
     }
 
     .row {
-        gap: 0.05em;
+        gap: 0.1em;
         width: 100%;
     }
 
     .key {
-        padding: 0.8em 0.5em;
-        font-size: 1em;
-        min-width: 1.7em;
-        min-height: 1.7em;
-        max-width: 2.2em;
-        flex: 1 0 1.7em;
+        padding: 1.1em 0.7em;
+        font-size: 1.15em;
+        min-width: 2.1em;
+        min-height: 2.1em;
+        max-width: 2.7em;
+        flex: 1 0 2.1em;
     }
 }
