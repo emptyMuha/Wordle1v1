@@ -8,6 +8,7 @@ function getRandomRoomCode() {
 
 export default function App() {
     const [username, setUsername] = useState('');
+    const [inputName, setInputName] = useState('');
     const [room, setRoom] = useState('');
     const [inGame, setInGame] = useState(false);
     const [showJoinInput, setShowJoinInput] = useState(false);
@@ -15,13 +16,17 @@ export default function App() {
 
     useEffect(() => {
         const storedName = localStorage.getItem('wordle1v1_username');
-        if (storedName) setUsername(storedName);
+        if (storedName) {
+            setUsername(storedName);
+            setInputName(storedName);
+        }
     }, []);
 
     const handleUsernameSubmit = (e) => {
         e.preventDefault();
-        if (!username) return;
-        localStorage.setItem('wordle1v1_username', username);
+        if (!inputName) return;
+        setUsername(inputName);
+        localStorage.setItem('wordle1v1_username', inputName);
     };
 
     const handleCreateGame = () => {
@@ -45,21 +50,22 @@ export default function App() {
     return (
         <main className="container">
             {!username ? (
-                <form className="modal" onSubmit={handleUsernameSubmit}>
+                <form className="modal fade-in" onSubmit={handleUsernameSubmit}>
                     <h2>Enter your name</h2>
                     <input
                         type="text"
-                        value={username}
-                        onChange={e => setUsername(e.target.value)}
+                        value={inputName}
+                        onChange={e => setInputName(e.target.value)}
                         maxLength={16}
                         placeholder="Your name"
                         required
                         autoFocus
+                        style={{ fontSize: '1.3em', padding: '1em' }}
                     />
-                    <button type="submit" disabled={!username}>Continue</button>
+                    <button type="submit" disabled={!inputName}>Continue</button>
                 </form>
             ) : !inGame ? (
-                <div className="vertical-options">
+                <div className="vertical-options fade-in">
                     <div className="option-square" onClick={handleCreateGame} tabIndex={0} role="button">
                         <h2>Create Game</h2>
                         <p>Start a new game and get a room code to share</p>
@@ -79,6 +85,7 @@ export default function App() {
                                     inputMode="numeric"
                                     pattern="[0-9]{4}"
                                     autoFocus
+                                    style={{ fontSize: '1.2em', padding: '0.8em' }}
                                 />
                                 <button type="submit" disabled={joinCode.length !== 4}>Join</button>
                             </form>

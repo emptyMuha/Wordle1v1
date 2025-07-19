@@ -1,38 +1,69 @@
 .keyboard {
     display: flex;
     flex-direction: column;
-    gap: 0.5em;
+    gap: 0.7em;
+    align-items: center;
+    justify-content: center;
 }
 
 .row {
     display: flex;
-    gap: 0.3em;
+    gap: 0.4em;
     justify-content: center;
 }
 
 .key {
-    background: #222;
-    color: #e0e0e0;
+    background: #2a182a;
+    color: #ffd1ec;
     border: none;
-    border-radius: 6px;
-    padding: 0.7em 1em;
-    font-size: 1.1em;
+    border-radius: 10px;
+    padding: 1.1em 1.3em;
+    font-size: 1.4em;
     cursor: pointer;
     text-transform: uppercase;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s, transform 0.08s;
+    margin: 0.1em;
+    outline: none;
+    box-shadow: 0 2px 8px #0002;
+    will-change: transform;
+}
+
+.key:active {
+    transform: scale(1.12);
+    background: #ff69b4;
+    color: #fff;
 }
 
 .key.correct {
-    background: #27ae60;
-    color: #181a1b;
+    background: #ff69b4;
+    color: #fff;
 }
 
 .key.present {
-    background: #444;
-    color: #e0e0e0;
+    background: #ffb6d5;
+    color: #2a182a;
 }
 
 .key.absent {
-    background: #181a1b;
-    color: #444;
+    background: #3a3a3c;
+    color: #ffd1ec;
+}
+
+@media (max-width: 600px) {
+    .keyboard {
+        min-width: 98vw !important;
+        max-width: 100vw;
+        gap: 0.5em;
+    }
+
+    .row {
+        gap: 0.2em;
+    }
+
+    .key {
+        padding: 1.2em 1.1em;
+        font-size: 1.3em;
+        min-width: 2.5em;
+        min-height: 2.5em;
+    }
 }
