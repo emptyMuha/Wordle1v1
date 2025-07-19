@@ -12,15 +12,18 @@ export default function Keyboard({ keyStatuses = {}, onKey }) {
     const keyRefs = useRef({});
 
     const handleKeyClick = (key) => {
-        if (keyRefs.current[key]) {
-            keyRefs.current[key].classList.remove('key-pressed');
+        const btn = keyRefs.current[key];
+        if (btn) {
+            btn.classList.remove('key-pressed');
             // Force reflow to restart animation
-            void keyRefs.current[key].offsetWidth;
+            void btn.offsetWidth;
+            btn.classList.add('key-pressed');
+            setTimeout(() => {
+                btn.classList.remove('key-pressed');
+            }, 90);
+            // Remove focus after click to prevent :focus/:active styling
+            btn.blur();
         }
-        keyRefs.current[key]?.classList.add('key-pressed');
-        setTimeout(() => {
-            keyRefs.current[key]?.classList.remove('key-pressed');
-        }, 100);
         onKey(key);
     };
 
@@ -32,8 +35,9 @@ export default function Keyboard({ keyStatuses = {}, onKey }) {
                         <button
                             key={key}
                             ref={el => keyRefs.current[key] = el}
-                            className={`key ${keyStatuses[key] || ''}`}
+                            className={`key${keyStatuses[key] ? ' ' + keyStatuses[key] : ''}`}
                             onClick={() => handleKeyClick(key)}
+                            tabIndex={0}
                         >
                             {key}
                         </button>

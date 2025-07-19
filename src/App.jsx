@@ -140,7 +140,15 @@ export default function App() {
                 </div>
             ) : (
                 <>
-                    <div className="user-bar">Player: <b>{username}</b> | Room: <b>{room}</b></div>
+                    <div className="top-bar">
+                        <div className="room-left">Room: <b>{room}</b></div>
+                        <div className="players-center">
+                            <span className="player-name-center" id="player1"></span>
+                            <span className="vs-center">vs</span>
+                            <span className="player-name-center" id="player2"></span>
+                        </div>
+                        <div className="username-right"></div>
+                    </div>
                     <Game username={username} room={room} />
                 </>
             )}
