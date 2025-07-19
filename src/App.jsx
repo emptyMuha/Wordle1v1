@@ -15,6 +15,7 @@ export default function App() {
     const [joinCode, setJoinCode] = useState('');
     const [showNameModal, setShowNameModal] = useState(false);
     const [editName, setEditName] = useState('');
+    const [players, setPlayers] = useState(['...', '...']);
 
     useEffect(() => {
         const storedName = localStorage.getItem('wordle1v1_username');
@@ -70,6 +71,7 @@ export default function App() {
                     className="username-btn"
                     onClick={openNameModal}
                     aria-label="Change username"
+                    style={{ top: 8, right: 12 }}
                 >
                     {username}
                 </button>
@@ -140,8 +142,8 @@ export default function App() {
                 </div>
             ) : (
                 <>
-                    <div className="user-bar">Player: <b>{username}</b> | Room: <b>{room}</b></div>
-                    <Game username={username} room={room} />
+                    <div className="user-bar">Room: <b>{room}</b> | <b>{players[0]}</b> vs <b>{players[1]}</b></div>
+                    <Game username={username} room={room} setPlayers={setPlayers} />
                 </>
             )}
         </main>

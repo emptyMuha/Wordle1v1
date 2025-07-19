@@ -9,7 +9,7 @@ import './Game.css';
 const emptyGuesses = Array(6).fill('').map(() => Array(5).fill(''));
 const emptyStatuses = Array(6).fill('').map(() => Array(5).fill(''));
 
-export default function Game({ username, room }) {
+export default function Game({ username, room, setPlayers }) {
     const [guesses, setGuesses] = useState(emptyGuesses);
     const [statuses, setStatuses] = useState(emptyStatuses);
     const [keyStatuses, setKeyStatuses] = useState({});
@@ -31,21 +31,8 @@ export default function Game({ username, room }) {
         socket.on('match_found', (data) => {
             setAnswer(data.word);
             setMatched(true);
-            setPlayers(data.players);
+            setPlayers && setPlayers(data.players);
             setStatus('Match found! Game starting...');
-            // Set player names in the top bar
-            setTimeout(() => {
-                const p1 = document.getElementById('player1');
-                const p2 = document.getElementById('player2');
-                if (p1) p1.textContent = data.players[0];
-                if (p2) p2.textContent = data.players[1];
-                const userBtn = document.querySelector('.username-btn');
-                const userRight = document.querySelector('.username-right');
-                if (userBtn && userRight) {
-                    userRight.innerHTML = '';
-                    userRight.appendChild(userBtn);
-                }
-            }, 0);
         });
         socket.on('room_full', () => {
             setStatus('Room is full. Please join another room.');
