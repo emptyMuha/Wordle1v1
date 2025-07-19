@@ -29,25 +29,25 @@ html {
 }
 
 .option-square {
-    background: #222;
-    color: #e0e0e0;
+    background: #232228;
+    color: #f3d1ff;
     border-radius: 16px;
     box-shadow: 0 2px 16px #0008;
-    padding: 2em 2em;
+    padding: 2.2em 2em;
     min-width: 260px;
     max-width: 90vw;
     text-align: center;
     cursor: pointer;
     margin: 0 auto;
     transition: background 0.2s, color 0.2s, transform 0.1s;
-    font-size: 1.2em;
+    font-size: 1.3em;
     outline: none;
 }
 
 .option-square:focus,
 .option-square:hover {
-    background: #27ae60;
-    color: #181a1b;
+    background: #c850c0;
+    color: #fff;
     transform: scale(1.03);
 }
 
@@ -62,9 +62,9 @@ html {
 .join-form input[type="text"] {
     padding: 0.7em;
     border-radius: 6px;
-    border: 1px solid #444;
+    border: 1px solid #a8326e;
     background: #181a1b;
-    color: #e0e0e0;
+    color: #f3d1ff;
     font-size: 1.1em;
     width: 120px;
     text-align: center;
@@ -77,35 +77,39 @@ html {
 }
 
 h1 {
-    color: #27ae60;
+    color: #c850c0;
     font-size: 3rem;
     margin-bottom: 0.5em;
 }
 
 p {
-    color: #b0b0b0;
+    color: #e09cff;
     margin-bottom: 2em;
 }
 
 button {
-    background: #222;
-    color: #27ae60;
+    background: #232228;
+    color: #f3d1ff;
     border: none;
-    padding: 1em 2em;
-    font-size: 1.2rem;
-    border-radius: 8px;
+    padding: 1.1em 2.2em;
+    font-size: 1.3rem;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, color 0.2s, transform 0.08s;
+    margin: 0.2em;
+    font-weight: 600;
 }
 
-button:hover {
-    background: #27ae60;
-    color: #181a1b;
+button:hover,
+button:focus {
+    background: #c850c0;
+    color: #fff;
+    transform: scale(1.04);
 }
 
 .modal {
-    background: #222;
-    color: #e0e0e0;
+    background: #232228;
+    color: #f3d1ff;
     padding: 2em;
     border-radius: 12px;
     box-shadow: 0 2px 16px #0008;
@@ -114,14 +118,27 @@ button:hover {
     align-items: center;
     gap: 1em;
     max-width: 90vw;
+    animation: fadein 0.3s;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
 }
 
 .modal input[type="text"] {
     padding: 0.7em;
     border-radius: 6px;
-    border: 1px solid #444;
+    border: 1px solid #a8326e;
     background: #181a1b;
-    color: #e0e0e0;
+    color: #f3d1ff;
     font-size: 1.1em;
     margin-bottom: 0.5em;
     width: 180px;
@@ -137,18 +154,18 @@ button:hover {
 
 .room-info {
     margin-bottom: 0.5em;
-    color: #27ae60;
+    color: #c850c0;
 }
 
 .user-bar,
 .players-bar {
     width: 100vw;
     max-width: 100vw;
-    background: #222;
-    color: #27ae60;
+    background: #232228;
+    color: #c850c0;
     text-align: center;
-    padding: 0.5em 0;
-    font-size: 1.1em;
+    padding: 0.7em 0;
+    font-size: 1.2em;
     font-weight: bold;
     letter-spacing: 1px;
     display: flex;
@@ -161,10 +178,44 @@ button:hover {
     text-align: center;
 }
 
+.status {
+    color: #e09cff;
+    font-size: 1.5rem;
+    margin-bottom: 2em;
+    font-weight: 600;
+    text-shadow: 0 2px 8px #0004;
+}
+
+.error {
+    color: #ff4fa3;
+    font-size: 1.1em;
+    margin-bottom: 1em;
+    font-weight: 600;
+}
+
+.fade-in {
+    animation: fadein 0.3s;
+}
+
 /* Mobile responsiveness */
 @media (max-width: 600px) {
     .container {
         padding: 0;
+        min-height: 100vh;
+        width: 100vw;
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+
+    .vertical-options {
+        gap: 1em;
+    }
+
+    .option-square {
+        padding: 1.2em 0.5em;
+        min-width: 90vw;
+        max-width: 98vw;
+        font-size: 1.1em;
     }
 
     .modal {
@@ -178,35 +229,5 @@ button:hover {
         font-size: 1em;
         gap: 0.5em;
         padding: 0.3em 0;
-    }
-
-    .wordle-grid {
-        min-width: 90vw !important;
-        max-width: 98vw;
-        padding: 0.5em !important;
-        font-size: 1.1em;
-    }
-
-    .keyboard {
-        min-width: 90vw !important;
-        max-width: 98vw;
-        flex-wrap: wrap;
-        padding: 0.5em !important;
-        font-size: 1em;
-    }
-
-    .row {
-        gap: 0.1em;
-    }
-
-    .cell {
-        width: 2em !important;
-        height: 2em !important;
-        font-size: 1.2em !important;
-    }
-
-    .key {
-        padding: 0.5em 0.6em !important;
-        font-size: 1em !important;
     }
 }
